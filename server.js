@@ -1,7 +1,16 @@
 const express = require("express");
+const shortid = require("shortid");
 const server = express();
 
-server.get("/", (req, res) => res.json({"message": "Success"}));
+const users = [
+    {
+        "id": shortid.generate,
+        "name": "Jane Doe",
+        "bio": "Helpful person."
+    }
+];
+
+server.get("/api/users", (req, res) => res.json(users));
 
 const port = 5000;
 
