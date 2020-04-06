@@ -17,7 +17,9 @@ const users = [
 
 server.use(express.json());
 
-server.get("/api/users", (req, res) => res.json(users));
+server.get("/api/users", (req, res) => {
+    users ? res.json(users) : res.status(500).json({errorMessage: "The users information could not be retrieved."});
+});
 
 server.get("/api/users/:id", (req, res) => {
     const id = req.params.id;
