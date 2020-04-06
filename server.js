@@ -27,8 +27,12 @@ server.get("/api/users/:id", (req, res) => {
 
 server.post("/api/users", (req, res) => {
     const userInfo = req.body;
-    users.push(userInfo);
-    res.status(201).json(users);
+    if(userInfo.name && userInfo.bio) {
+        users.push(userInfo);
+        res.status(201).json(users);
+    } else {
+        res.status(400).json({errorMessage: "Cannot add user. Please include name and bio!"});
+    }
 });
 
 const port = 5000;
