@@ -12,8 +12,10 @@ const users = [
         "id": shortid.generate(),
         "name": "Paul Gibson",
         "bio": "Talented person."
-    }
+    },
 ];
+
+server.use(express.json());
 
 server.get("/api/users", (req, res) => res.json(users));
 
@@ -21,6 +23,12 @@ server.get("/api/users/:id", (req, res) => {
     const id = req.params.id;
     const user = users.find(user => user.id == id);
     user ? res.status(200).json(user) : res.status(404).json({message: "User not found"});
+});
+
+server.post("/api/users", (req, res) => {
+    const userInfo = req.body;
+    users.push(userInfo);
+    res.status(201).json(users);
 });
 
 const port = 5000;
