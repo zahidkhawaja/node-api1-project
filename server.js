@@ -4,9 +4,14 @@ const server = express();
 
 const users = [
     {
-        "id": shortid.generate,
+        "id": shortid.generate(),
         "name": "Jane Doe",
         "bio": "Helpful person."
+    },
+    {
+        "id": shortid.generate(),
+        "name": "Paul Gibson",
+        "bio": "Talented person."
     }
 ];
 
